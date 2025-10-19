@@ -1,0 +1,3 @@
+streamlit
+deepface
+python-dotenv
