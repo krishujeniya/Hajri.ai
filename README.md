@@ -1,5 +1,4 @@
 <a id="readme-top"></a>
-
 ![GitHub repo size](https://img.shields.io/github/repo-size/krishujeniya/Hajri.ai)
 ![GitHub contributors](https://img.shields.io/github/contributors/krishujeniya/Hajri.ai)
 ![GitHub stars](https://img.shields.io/github/stars/krishujeniya/Hajri.ai?style=social)
