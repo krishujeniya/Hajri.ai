@@ -2,12 +2,17 @@ import streamlit as st
 from PIL import Image
 import io
 import pandas as pd
-import hajri_utils as utils
-from hajri_css import CSS
-from hajri_views import admin_app,teacher_app,student_app # Make sure to pass 'authenticator' to these functions
 import os
 from dotenv import load_dotenv
 import streamlit_authenticator as stauth
+
+# New structure imports
+from src.ui.styles import CSS
+from src.config.settings import Config
+
+# Legacy imports (to be migrated)
+import hajri_utils as utils
+from hajri_views import admin_app, teacher_app, student_app
 
 # Load environment variables
 load_dotenv()
