@@ -1,209 +1,361 @@
-<a id="readme-top"></a>
+# 🎓 Hajri.ai - AI-Powered Attendance System
+
+<div align="center">
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/krishujeniya/Hajri.ai)
 ![GitHub contributors](https://img.shields.io/github/contributors/krishujeniya/Hajri.ai)
 ![GitHub stars](https://img.shields.io/github/stars/krishujeniya/Hajri.ai?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/krishujeniya/Hajri.ai?style=social)
 
-<br />
-<div align="center">
-  <a href="https://github.com/krishujeniya/Hajri.ai"><img src="logo.png" alt="Logo" width="80" height="80"></a>
+**An intelligent, automated attendance management system using facial recognition and liveness detection.**
 
-<h1 align="center">Hajri.ai</h1>
+[Features](#-features) • [Quick Start](#-quick-start) • [Docker](#-docker-deployment) • [Documentation](#-documentation)
 
-    <p align="center">
-        An AI-powered, automated attendance system using facial recognition.
-        <br />
-        <a href="https://github.com/krishujeniya/Hajri.ai">View Demo (Not Live)</a>
-        ·
-        <a href="https://github.com/krishujeniya/Hajri.ai/issues">Report Bug</a>
-        ·
-        <a href="https://github.com/krishujeniya/Hajri.ai/issues">Request Feature</a>
-    </p>
 </div>
 
-<details>
-	<summary>Table of Contents</summary>
-	<ol>
-		<li>
-			<a href="#about-the-project">About The Project</a>
-			<ul>
-				<li><a href="#key-features">Key Features</a></li>
-				<li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+---
 
-## 🚀 About The Project
+## 🚀 Quick Start
 
-**Hajri.ai** is an intelligent attendance management system designed for modern educational institutions. It replaces traditional manual attendance with a fast, accurate, and spoof-proof solution built on facial recognition.
+### **One-Command Setup** (Recommended)
 
-The system features distinct, secure portals for Administrators, Teachers, and Students, each with tools tailored to their needs. From a single uploaded class photo or a live camera feed, Hajri.ai can detect and recognize all registered students, perform liveness checks to prevent spoofing, and automatically update attendance records.
+```bash
+# Using uv (fastest)
+uv run streamlit run app.py
+```
 
-This project streamlines administrative tasks, provides valuable data insights through dashboards, and ensures the integrity of attendance records.
+That's it! The app will automatically:
+- ✅ Install all dependencies
+- ✅ Initialize the database
+- ✅ Start the application
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### **Traditional Setup**
 
-### 💡 Key Features
+```bash
+# 1. Clone repository
+git clone https://github.com/krishujeniya/Hajri.ai.git
+cd Hajri.ai
 
-* **⚡ Fast Facial Recognition:** Mark attendance for an entire class from a single image.
-* **🔒 Anti-Spoofing:** Built-in liveness detection prevents using photos or videos for proxy attendance.
-* **👤 Role-Based Access:** Secure, separate dashboards for **Admins**, **Teachers**, and **Students**.
-* **🧑‍🎓 Student Portal:** Students can log in to view their detailed attendance percentages and reports for all their subjects.
-* **🧑‍🏫 Teacher Portal:**
-    * Take attendance via image upload or live camera.
-    * View attendance dashboards and lecture trends.
-    * Mark attendance manually for exceptions.
-    * Download comprehensive attendance reports in **CSV** and **PDF** formats.
-* **🛠️ Admin Portal:**
-    * Full control over user management (Create, Delete Students/Teachers).
-    * Manage subjects (Create, Delete).
-    * Assign teachers to subjects.
-    * Enroll or remove students from subjects in bulk.
-* **📊 Data & Analytics:**
-    * Dashboards show overall attendance percentages, lecture-wise trends, and total student/lecture counts.
-    * Automatically generates a "Defaulter List" for students below a set attendance threshold.
-* **📧 Email Notifications:** Automatically send low-attendance warnings to defaulters with a single click.
+# 2. Setup environment
+cp .env.example .env
+# Edit .env with your credentials
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+# 3. Install dependencies
+pip install -r requirements.txt
 
-### 🔧 Built With
+# 4. Initialize database
+python3 scripts/setup_db.py
 
-This project is built with a modern, all-Python tech stack.
+# 5. Run application
+streamlit run app.py
+```
 
-* [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-* [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
-* [![DeepFace](https://img.shields.io/badge/DeepFace-4C88EF?style=for-the-badge&logo=face&logoColor=white)](https://github.com/serengil/deepface)
-* [![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
-* [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
-* [![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)](https://opencv.org/)
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 🐳 Docker Deployment
 
-## ⚙️ Getting Started
+### **One-Command Docker Run**
 
-Follow these steps to get a local copy up and running.
+```bash
+docker-compose up
+```
 
-### Prerequisites
+The application will be available at `http://localhost:8501`
 
-You must have Python (3.9+ recommended) and Git installed on your system.
+### **Manual Docker Build**
 
-* **Python**: [Download Python](https://www.python.org/downloads/)
-* **Git**: [Download Git](https://git-scm.com/downloads)
+```bash
+# Build image
+docker build -t hajri-ai .
 
-### Installation
+# Run container
+docker run -p 8501:8501 hajri-ai
+```
 
-1.  **Clone the repository**
-    ```sh
-    git clone https://github.com/krishujeniya/Hajri.ai.git
-    cd Hajri.ai
-    ```
+---
 
-2.  **Create and activate a virtual environment** (Recommended)
-    * On macOS/Linux:
-        ```sh
-        python3 -m venv .venv
-        source .venv/bin/activate
-        ```
-    * On Windows:
-        ```sh
-        python -m venv .venv
-        .\.venv\Scripts\activate
-        ```
+## ✨ Features
 
-3.  **Create a `requirements.txt` file**
-    Create a new file named `requirements.txt` and paste the following libraries into it:
-    ```txt
-    streamlit
-    streamlit-authenticator
-    deepface
-    pandas
-    pillow
-    python-dotenv
-    albumentations
-    fpdf
-    opencv-python-headless
-    ```
+### **🔐 Role-Based Access Control**
+- **Admin Portal**: Full system management
+- **Teacher Portal**: Attendance tracking and reporting
+- **Student Portal**: View personal attendance records
 
-4.  **Install the required packages**
-    ```sh
-    pip install -r requirements.txt
-    ```
+### **🤖 AI-Powered Recognition**
+- ⚡ Fast facial recognition using DeepFace
+- 🔒 Anti-spoofing with liveness detection
+- 📸 Mark entire class from single photo
+- 🎯 High accuracy with SFace model
 
-5.  **Create an environment file**
-    Create a file named `.env` in the project's root directory. This is for your secret keys and passwords.
-    * **Note:** For `SENDER_PASSWORD`, it's highly recommended to use a 16-digit "App Password" from your Google account, not your regular password.
-    ```env
-    # --- App ---
-    SECRET_KEY="your_random_secret_key_123"
+### **📊 Comprehensive Analytics**
+- Real-time attendance dashboards
+- Lecture-wise trends and statistics
+- Automatic defaulter identification
+- Export reports (CSV & PDF)
 
-    # --- Default Admin ---
-    ADMIN_USERNAME="admin"
-    ADMIN_PASSWORD="changeme123"
+### **📧 Smart Notifications**
+- Automated email alerts for low attendance
+- Bulk notification system
+- Customizable thresholds
 
-    # --- Gmail for Notifications ---
-    SENDER_EMAIL="your-email@gmail.com"
-    SENDER_PASSWORD="your-16-digit-app-password"
-    ```
+### **🎨 Modern UI**
+- Glassmorphism dark theme
+- Responsive design
+- Intuitive user experience
 
-6.  **Run the app**
-    ```sh
-    streamlit run app.py
-    ```
-    Your app will now be running at `http://localhost:8501`.
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 📁 Project Structure
 
-## 🖥️ Usage
+```
+hajri.ai/
+├── assets/              # Project assets (logo, database, training images)
+├── src/                 # Source code
+│   ├── config/         # Configuration management
+│   ├── database/       # Database operations
+│   ├── services/       # Business services
+│   ├── ui/             # UI components & styles
+│   ├── legacy/         # Legacy modules (to be refactored)
+│   └── models/         # AI model files
+├── docs/               # Documentation
+├── scripts/            # Utility scripts
+├── tests/              # Test files
+├── app.py              # Main application entry point
+├── Dockerfile          # Docker configuration
+├── docker-compose.yml  # Docker Compose configuration
+└── Makefile            # Build automation
+```
 
-1.  **First-Time Login:**
-    * Open `http://localhost:8501`.
-    * Log in as the admin using the credentials you set in your `.env` file (e.g., `admin` / `changeme123`).
+---
 
-2.  **Register a Student:**
-    * Go to the **"Register User"** tab.
-    * Select the "student" role.
-    * Fill in the details. After clicking "Create User", the app will guide you to capture 10 photos.
-    * The AI model will automatically train on these images.
+## 🛠️ Technology Stack
 
-3.  **Take Attendance:**
-    * Go to the **"Take Attendance"** tab.
-    * Select a subject and create a new lecture.
-    * Upload a photo of the class or use the camera input.
-    * The system will analyze the photo, mark "Present" for recognized students, and show you the results.
-    * You can manually correct any errors before clicking "Save Verified Attendance".
+- **Framework**: Streamlit
+- **AI/ML**: DeepFace, OpenCV
+- **Database**: SQLite
+- **Authentication**: Streamlit-Authenticator
+- **Image Processing**: Albumentations, Pillow
+- **Reports**: FPDF2, Pandas
 
-4.  **View Reports:**
-    * Go to the **"Dashboard"** tab to see stats, trends, and the defaulter list.
-    * You can download full reports as **CSV** or **PDF**.
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 📖 Documentation
 
-## 📜 License
+- **[Quick Start Guide](docs/QUICK_START.md)** - Get started in 5 minutes
+- **[Contributing Guide](docs/CONTRIBUTING.md)** - How to contribute
+- **[Architecture](docs/FINAL_STRUCTURE.md)** - Project structure details
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## ⚙️ Configuration
+
+### **Environment Variables**
+
+Create a `.env` file in the root directory:
+
+```env
+# Application
+SECRET_KEY=your_random_secret_key_here
+
+# Admin Credentials
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your_secure_password
+
+# Email Configuration (for notifications)
+SENDER_EMAIL=your-email@gmail.com
+SENDER_PASSWORD=your-16-digit-app-password
+```
+
+### **Gmail App Password Setup**
+
+For email notifications, use a Gmail App Password:
+1. Go to [Google Account Security](https://myaccount.google.com/security)
+2. Enable 2-Step Verification
+3. Generate App Password for "Mail"
+4. Use the 16-digit password in `.env`
+
+---
+
+## 🎯 Usage
+
+### **First-Time Setup**
+
+1. **Login as Admin**
+   - Username: `admin` (or from `.env`)
+   - Password: From `.env` file
+
+2. **Register Students**
+   - Navigate to "Register User" tab
+   - Select "student" role
+   - Capture 10 photos for training
+   - AI model trains automatically
+
+3. **Create Subjects**
+   - Go to "Manage" tab
+   - Create subjects
+   - Assign teachers
+   - Enroll students
+
+4. **Take Attendance**
+   - Select subject
+   - Create/select lecture
+   - Upload class photo or use camera
+   - Review and save attendance
+
+### **For Teachers**
+
+- Mark attendance via photo upload or live camera
+- View attendance dashboards and trends
+- Download reports (CSV/PDF)
+- Send email notifications to defaulters
+
+### **For Students**
+
+- View attendance percentage for all subjects
+- Check detailed lecture-wise attendance
+- Track attendance trends
+
+---
+
+## 🔧 Utility Scripts
+
+```bash
+# Initialize database
+python3 scripts/setup_db.py
+
+# Create backup
+python3 scripts/backup_data.py
+
+# Clean up old files
+python3 scripts/cleanup_old_files.py
+```
+
+---
+
+## 🐳 Docker Commands
+
+```bash
+# Build and run
+docker-compose up --build
+
+# Run in background
+docker-compose up -d
+
+# Stop containers
+docker-compose down
+
+# View logs
+docker-compose logs -f
+
+# Rebuild
+docker-compose build --no-cache
+```
+
+---
+
+## 📦 Using Makefile
+
+```bash
+# Install dependencies
+make install
+
+# Run application
+make run
+
+# Run with Docker
+make docker-run
+
+# Run tests
+make test
+
+# Clean build artifacts
+make clean
+
+# Format code
+make format
+
+# Show all commands
+make help
+```
+
+---
+
+## 🧪 Development
+
+### **Setup Development Environment**
+
+```bash
+# Install dev dependencies
+pip install -r requirements-dev.txt
+
+# Format code
+black .
+isort .
+
+# Run tests
+pytest
+
+# Type checking
+mypy src/
+```
+
+### **Project Guidelines**
+
+- Follow PEP 8 style guide
+- Add docstrings to all functions
+- Write tests for new features
+- Update documentation
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details.
+
+### **Quick Contribution Steps**
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 🙏 Acknowledgments
 
-This project wouldn't be possible without these incredible open-source libraries:
+Built with these amazing open-source libraries:
+- [Streamlit](https://streamlit.io/)
+- [DeepFace](https://github.com/serengil/deepface)
+- [OpenCV](https://opencv.org/)
+- [Pandas](https://pandas.pydata.org/)
 
-* [Streamlit](https://streamlit.io/)
-* [DeepFace](https://github.com/serengil/deepface)
-* [Streamlit-Authenticator](https://github.com/mkhorasani/Streamlit-Authenticator)
-* [Pandas](https://pandas.pydata.org/)
-* [Pillow](https://python-pillow.org/)
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## 📞 Support
+
+- 📧 Email: support@hajri.ai
+- 🐛 Issues: [GitHub Issues](https://github.com/krishujeniya/Hajri.ai/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/krishujeniya/Hajri.ai/discussions)
+
+---
+
+## 🌟 Star History
+
+If you find this project useful, please consider giving it a star! ⭐
+
+---
+
+<div align="center">
+
+**Made with ❤️ by the Hajri.ai Team**
+
+[⬆ Back to Top](#-hajriai---ai-powered-attendance-system)
+
+</div>

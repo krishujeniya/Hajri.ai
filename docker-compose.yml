@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  hajri-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hajri-ai
+    ports:
+      - "8501:8501"
+    volumes:
+      # Persist database and training images
+      - ./assets:/app/assets
+      - ./src/models:/app/src/models
+    environment:
+      # Load from .env file
+      - SECRET_KEY=${SECRET_KEY:-hajri_secret_key_123}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme}
+      - SENDER_EMAIL=${SENDER_EMAIL}
+      - SENDER_PASSWORD=${SENDER_PASSWORD}
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - hajri-network
+
+networks:
+  hajri-network:
+    driver: bridge
+
+volumes:
+  assets-data:
+  models-data:
