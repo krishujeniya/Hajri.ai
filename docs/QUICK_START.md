@@ -1,13 +1,12 @@
 # 🚀 Quick Start Guide
 
-## ⚡ Fastest Way (One Command!)
+## ⚡ One Command (Fastest!)
 
 ```bash
-# Using uv (recommended)
-uv run streamlit run app.py
+uv run streamlit run src/app.py
 ```
 
-**That's it!** The app auto-installs dependencies and runs.
+**That's it!** Auto-installs everything and runs.
 
 ---
 
@@ -24,17 +23,9 @@ Access at: `http://localhost:8501`
 ## 📦 Using Makefile
 
 ```bash
-# Run with uv
-make run
-
-# Run with Docker
-make docker-run
-
-# Setup and run
-make all
-
-# See all commands
-make help
+make run          # Run with uv
+make docker-run   # Run with Docker
+make help         # See all commands
 ```
 
 ---
@@ -43,7 +34,7 @@ make help
 
 ```bash
 # 1. Clone
-git clone https://github.com/krishujeniya/Hajri.ai.git
+git clone https://github.com/YOUR_USERNAME/Hajri.ai.git
 cd Hajri.ai
 
 # 2. Environment
@@ -57,7 +48,7 @@ pip install -r requirements.txt
 python3 scripts/setup_db.py
 
 # 5. Run
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 ---
@@ -65,7 +56,7 @@ streamlit run app.py
 ## 🎯 First Login
 
 - **URL**: `http://localhost:8501`
-- **Username**: `admin` (or from `.env`)
+- **Username**: From `.env` (default: `admin`)
 - **Password**: From `.env` file
 
 ---

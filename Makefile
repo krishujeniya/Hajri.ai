@@ -31,11 +31,11 @@ setup: install ## Setup database and environment
 
 run: ## Run the application with uv (fastest)
 	@echo "$(BLUE)Starting Hajri.ai with uv...$(NC)"
-	uv run streamlit run app.py
+	uv run streamlit run src/app.py
 
 run-pip: ## Run the application with pip
 	@echo "$(BLUE)Starting Hajri.ai...$(NC)"
-	streamlit run app.py
+	streamlit run src/app.py
 
 docker-build: ## Build Docker image
 	@echo "$(BLUE)Building Docker image...$(NC)"
@@ -83,7 +83,7 @@ format: ## Format code with black and isort
 
 lint: ## Lint code with flake8
 	@echo "$(BLUE)Linting code...$(NC)"
-	flake8 src/ app.py
+	flake8 src/
 	@echo "$(GREEN)✓ Linting complete$(NC)"
 
 type-check: ## Type check with mypy

@@ -21,7 +21,7 @@
 
 ```bash
 # Using uv (fastest)
-uv run streamlit run app.py
+uv run streamlit run src/app.py
 ```
 
 That's it! The app will automatically:
@@ -33,7 +33,7 @@ That's it! The app will automatically:
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/krishujeniya/Hajri.ai.git
+git clone https://github.com/YOUR_USERNAME/Hajri.ai.git
 cd Hajri.ai
 
 # 2. Setup environment
@@ -47,7 +47,7 @@ pip install -r requirements.txt
 python3 scripts/setup_db.py
 
 # 5. Run application
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 ---
@@ -111,6 +111,7 @@ docker run -p 8501:8501 hajri-ai
 hajri.ai/
 ├── assets/              # Project assets (logo, database, training images)
 ├── src/                 # Source code
+│   ├── app.py          # Main application entry point
 │   ├── config/         # Configuration management
 │   ├── database/       # Database operations
 │   ├── services/       # Business services
@@ -120,7 +121,7 @@ hajri.ai/
 ├── docs/               # Documentation
 ├── scripts/            # Utility scripts
 ├── tests/              # Test files
-├── app.py              # Main application entry point
+├── run.py              # Quick launcher
 ├── Dockerfile          # Docker configuration
 ├── docker-compose.yml  # Docker Compose configuration
 └── Makefile            # Build automation
@@ -340,9 +341,9 @@ Built with these amazing open-source libraries:
 
 ## 📞 Support
 
-- 📧 Email: support@hajri.ai
-- 🐛 Issues: [GitHub Issues](https://github.com/krishujeniya/Hajri.ai/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/krishujeniya/Hajri.ai/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/YOUR_USERNAME/Hajri.ai/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/YOUR_USERNAME/Hajri.ai/discussions)
+- 📖 Documentation: See `docs/` folder
 
 ---
 
