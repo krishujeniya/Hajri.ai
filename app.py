@@ -19,10 +19,15 @@ utils.create_first_admin()
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
     page_title="Hajri.ai",
-    page_icon="logo.png",
+    page_icon="logo.png" if os.path.exists("logo.png") else "🎓",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+# --- LOGO CHECK ---
+if not os.path.exists("logo.png"):
+    print("\n⚠️  WARNING: logo.png not found! Using fallback placeholders.\n")
+
 
 # --- INITIALIZE SESSION STATE ---
 if 'capture_count' not in st.session_state: st.session_state.capture_count = 0
@@ -172,8 +177,6 @@ if st.session_state.authentication_status is None:
                         st.session_state.capture_count += 1
                         st.rerun()
                 elif st.session_state.capture_count > 10:
-                
-                    # --- THIS ENTIRE BLOCK MUST BE INDENTED ---
                     st.success(f"✅ All 10 images captured for {st.session_state.name}!")
                     with st.spinner('Augmenting...'):
                         aug_ok, aug_msg = utils.augment_training_images(st.session_state.enrollment_username)
@@ -191,7 +194,7 @@ if st.session_state.authentication_status is None:
                         st.session_state.show_register_form = False
                         st.session_state.show_login_form = True
                         st.rerun()
-                    # --- END OF INDENTED BLOCK ---
+
 
         st.markdown("---")
         if st.button("Already have an account? Login here", key="switch_to_login_from_reg"):
@@ -232,7 +235,11 @@ elif st.session_state["authentication_status"]:
 
         # --- Render Header ---
         col1, col2, col3 = st.columns([1.5, 3, 1])
-        with col1: st.image("logo.png", width=70)
+        with col1: 
+            try:
+                st.image("logo.png", width=70)
+            except Exception:
+                st.markdown("### 🎓")  # Fallback emoji if logo missing
         with col2: st.markdown(f"<div class='centered-user-info'><strong>{st.session_state['name']}</strong><span>Logged in as: {st.session_state['role'].title()}</span></div>", unsafe_allow_html=True)
         with col3: authenticator.logout('Logout', 'main', key='main_logout')
         st.markdown("---")

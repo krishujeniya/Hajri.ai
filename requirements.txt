@@ -1,3 +1,11 @@
-streamlit
-deepface
-python-dotenv
+streamlit>=1.50.0
+streamlit-authenticator>=0.4.2
+deepface>=0.0.95
+pandas
+pillow
+python-dotenv>=1.1.1
+albumentations>=2.0.8
+fpdf2>=2.8.4
+opencv-python-headless>=4.11.0.86
+tf-keras>=2.20.1
+setuptools<81

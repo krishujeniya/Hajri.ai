@@ -8,3 +8,42 @@ wheels/
 
 # Virtual environments
 .venv
+venv/
+env/
+
+# Environment variables (CRITICAL - contains passwords!)
+.env
+.env.local
+.env.*.local
+
+# Database files
+data/hajri.db
+data/*.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Training data and models
+data/training_images/
+data/models/
+*.pkl
+*.h5
+*.pt
+*.pth
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/
+tmp/

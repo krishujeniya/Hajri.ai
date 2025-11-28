@@ -1,5 +1,9 @@
-# hajri_css.py
-CSS="""
+"""
+UI Styles for Hajri.ai
+Glassmorphism dark theme with modern aesthetics
+"""
+
+CSS = """
 <style>
     /* --- 1. Root & Body --- */
     :root {
@@ -200,3 +204,9 @@ CSS="""
     }
 </style>
 """
+
+
+def inject_custom_css():
+    """Inject custom CSS into Streamlit app"""
+    import streamlit as st
+    st.markdown(CSS, unsafe_allow_html=True)
