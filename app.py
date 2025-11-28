@@ -10,9 +10,9 @@ import streamlit_authenticator as stauth
 from src.ui.styles import CSS
 from src.config.settings import Config
 
-# Legacy imports (to be migrated)
-import hajri_utils as utils
-from hajri_views import admin_app, teacher_app, student_app
+# Legacy imports (from src/legacy/)
+import src.legacy.hajri_utils as utils
+from src.legacy.hajri_views import admin_app, teacher_app, student_app
 
 # Load environment variables
 load_dotenv()

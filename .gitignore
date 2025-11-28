@@ -17,15 +17,16 @@ env/
 .env.*.local
 
 # Database files
-data/hajri.db
-data/*.db
+assets/hajri.db
+assets/*.db
 *.db
 *.sqlite
 *.sqlite3
 
 # Training data and models
-data/training_images/
-data/models/
+assets/training_images/
+src/models/*.pkl
+src/models/*.h5
 *.pkl
 *.h5
 *.pt

@@ -20,11 +20,11 @@ class Config:
     
     # Paths
     BASE_DIR = Path(__file__).parent.parent.parent
-    DATA_DIR = BASE_DIR / "data"
-    MODELS_DIR = DATA_DIR / "models"
-    TRAINING_IMAGES_DIR = DATA_DIR / "training_images"
-    DB_FILE = DATA_DIR / "hajri.db"
-    LOGO_PATH = BASE_DIR / "logo.png"
+    ASSETS_DIR = BASE_DIR / "assets"
+    MODELS_DIR = BASE_DIR / "src" / "models"
+    TRAINING_IMAGES_DIR = ASSETS_DIR / "training_images"
+    DB_FILE = ASSETS_DIR / "hajri.db"
+    LOGO_PATH = ASSETS_DIR / "logo.png"
     
     # Database
     DB_FOREIGN_KEYS = True
@@ -70,8 +70,8 @@ class Config:
     @classmethod
     def ensure_directories(cls):
         """Create necessary directories if they don't exist"""
-        cls.DATA_DIR.mkdir(exist_ok=True)
-        cls.MODELS_DIR.mkdir(exist_ok=True)
+        cls.ASSETS_DIR.mkdir(exist_ok=True)
+        cls.MODELS_DIR.mkdir(parents=True, exist_ok=True)
         cls.TRAINING_IMAGES_DIR.mkdir(exist_ok=True)
     
     @classmethod
