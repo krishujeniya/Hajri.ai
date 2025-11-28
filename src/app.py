@@ -23,15 +23,15 @@ utils.create_first_admin()
 
 # --- PAGE CONFIGURATION ---
 st.set_page_config(
-    page_title="Hajri.ai",
-    page_icon="logo.png" if os.path.exists("logo.png") else "🎓",
-    layout="wide",
-    initial_sidebar_state="collapsed",
+    page_title=Config.APP_NAME,
+    page_icon=str(Config.LOGO_PATH) if Config.LOGO_PATH.exists() else Config.PAGE_ICON,
+    layout=Config.LAYOUT,
+    initial_sidebar_state=Config.SIDEBAR_STATE,
 )
 
 # --- LOGO CHECK ---
-if not os.path.exists("logo.png"):
-    print("\n⚠️  WARNING: logo.png not found! Using fallback placeholders.\n")
+if not Config.LOGO_PATH.exists():
+    print(f"\n⚠️  WARNING: {Config.LOGO_PATH} not found! Using fallback placeholders.\n")
 
 
 # --- INITIALIZE SESSION STATE ---
@@ -61,9 +61,9 @@ credentials = utils.get_all_users_for_auth()
 config = {
     'credentials': credentials,
     'cookie': {
-        'name': 'hajri_cookie_name',
-        'key': os.getenv("SECRET_KEY", 'hajri_secret_key_123'),
-        'expiry_days': 30
+        'name': Config.COOKIE_NAME,
+        'key': Config.SECRET_KEY,
+        'expiry_days': Config.COOKIE_EXPIRY_DAYS
     }
 }
 
@@ -91,7 +91,7 @@ if st.session_state.authentication_status is None:
     st.markdown(
         f"""
         <div class='login-container'>
-            <img src='data:image/png;base64,{utils.get_base64_image("logo.png")}' class='login-logo'>
+            <img src='data:image/png;base64,{utils.get_base64_image(str(Config.LOGO_PATH))}' class='login-logo'>
             <h1>Welcome to Hajri.ai</h1>
             <h3>Please log in or register.</h3>
         </div>
@@ -242,7 +242,7 @@ elif st.session_state["authentication_status"]:
         col1, col2, col3 = st.columns([1.5, 3, 1])
         with col1: 
             try:
-                st.image("logo.png", width=70)
+                st.image(str(Config.LOGO_PATH), width=70)
             except Exception:
                 st.markdown("### 🎓")  # Fallback emoji if logo missing
         with col2: st.markdown(f"<div class='centered-user-info'><strong>{st.session_state['name']}</strong><span>Logged in as: {st.session_state['role'].title()}</span></div>", unsafe_allow_html=True)
@@ -258,7 +258,7 @@ elif st.session_state["authentication_status"]:
 # If authentication failed after a login attempt
 elif st.session_state["authentication_status"] is False:
     st.markdown(CSS, unsafe_allow_html=True) # Inject CSS for login page
-    st.markdown( f""" <div class='login-container'> <img src='data:image/png;base64,{utils.get_base64_image("logo.png")}' class='login-logo'> <h1>Welcome to Hajri.ai</h1> <h3>Please log in or register.</h3> </div> """, unsafe_allow_html=True)
+    st.markdown( f""" <div class='login-container'> <img src='data:image/png;base64,{utils.get_base64_image(str(Config.LOGO_PATH))}' class='login-logo'> <h1>Welcome to Hajri.ai</h1> <h3>Please log in or register.</h3> </div> """, unsafe_allow_html=True)
     st.error('Username/password is incorrect')
     # If login failed, typically you'd want to stay on the login form
     st.session_state.show_login_form = True

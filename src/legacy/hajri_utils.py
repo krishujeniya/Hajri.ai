@@ -18,18 +18,23 @@ import base64
 from fpdf import FPDF
 import streamlit as st # Import streamlit for caching decorators
 
+# Import centralized configuration
+from src.config.settings import Config
+
 load_dotenv()
 
 # ============================================
-# CONFIGURATION & DATABASE (Mostly Unchanged)
+# CONFIGURATION & DATABASE (Using Config)
 # ============================================
-DATA_DIR = "data"
-DB_FILE = os.path.join(DATA_DIR, "hajri.db")
-MODELS_DIR = os.path.join(DATA_DIR, "models")
-TRAINING_IMAGES_DIR = os.path.join(DATA_DIR, "training_images")
-os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(MODELS_DIR, exist_ok=True)
-os.makedirs(TRAINING_IMAGES_DIR, exist_ok=True)
+# All paths now come from Config
+DATA_DIR = str(Config.ASSETS_DIR)
+DB_FILE = str(Config.DB_FILE)
+MODELS_DIR = str(Config.MODELS_DIR)
+TRAINING_IMAGES_DIR = str(Config.TRAINING_IMAGES_DIR)
+
+# Ensure directories exist
+Config.ensure_directories()
+
 transform = A.Compose([A.HorizontalFlip(p=0.5),A.RandomBrightnessContrast(p=0.3),A.ShiftScaleRotate(p=0.4),A.GaussNoise(p=0.2),A.MotionBlur(p=0.2),A.Resize(224, 224)])
 
 # @st.cache_resource is useful for global resources like DB connections, but
@@ -641,4 +646,4 @@ def get_base64_image(image_path):
 
 def logo_exists():
     """Check if logo.png exists."""
-    return os.path.exists("logo.png")
+    return Config.LOGO_PATH.exists()

@@ -1,6 +1,6 @@
 """
 Configuration settings for Hajri.ai
-Centralizes all configuration in one place
+Centralizes all paths and configuration in one place
 """
 
 import os
@@ -12,19 +12,33 @@ load_dotenv()
 
 
 class Config:
-    """Application configuration"""
+    """Application configuration with centralized path management"""
     
     # Application Info
     APP_NAME = "Hajri.ai"
     VERSION = "1.0.0"
     
-    # Paths
-    BASE_DIR = Path(__file__).parent.parent.parent
+    # Base Paths (using pathlib for cross-platform compatibility)
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Project root
+    SRC_DIR = BASE_DIR / "src"
     ASSETS_DIR = BASE_DIR / "assets"
-    MODELS_DIR = BASE_DIR / "src" / "models"
+    SCRIPTS_DIR = BASE_DIR / "scripts"
+    DOCS_DIR = BASE_DIR / "docs"
+    TESTS_DIR = BASE_DIR / "tests"
+    
+    # Data Paths
     TRAINING_IMAGES_DIR = ASSETS_DIR / "training_images"
     DB_FILE = ASSETS_DIR / "hajri.db"
     LOGO_PATH = ASSETS_DIR / "logo.png"
+    
+    # Source Code Paths
+    MODELS_DIR = SRC_DIR / "models"
+    LEGACY_DIR = SRC_DIR / "legacy"
+    CONFIG_DIR = SRC_DIR / "config"
+    DATABASE_DIR = SRC_DIR / "database"
+    SERVICES_DIR = SRC_DIR / "services"
+    UI_DIR = SRC_DIR / "ui"
+    UTILS_DIR = SRC_DIR / "utils"
     
     # Database
     DB_FOREIGN_KEYS = True
@@ -70,9 +84,17 @@ class Config:
     @classmethod
     def ensure_directories(cls):
         """Create necessary directories if they don't exist"""
-        cls.ASSETS_DIR.mkdir(exist_ok=True)
-        cls.MODELS_DIR.mkdir(parents=True, exist_ok=True)
-        cls.TRAINING_IMAGES_DIR.mkdir(exist_ok=True)
+        directories = [
+            cls.ASSETS_DIR,
+            cls.TRAINING_IMAGES_DIR,
+            cls.MODELS_DIR,
+            cls.SCRIPTS_DIR,
+            cls.DOCS_DIR,
+            cls.TESTS_DIR,
+        ]
+        
+        for directory in directories:
+            directory.mkdir(parents=True, exist_ok=True)
     
     @classmethod
     def validate_config(cls):
@@ -89,6 +111,29 @@ class Config:
             issues.append(f"⚠️  Logo not found at {cls.LOGO_PATH}. Using fallback.")
         
         return issues
+    
+    @classmethod
+    def get_path(cls, *parts):
+        """
+        Get a path relative to BASE_DIR
+        
+        Args:
+            *parts: Path components
+            
+        Returns:
+            Path object
+        """
+        return cls.BASE_DIR.joinpath(*parts)
+    
+    @classmethod
+    def get_asset_path(cls, *parts):
+        """Get a path relative to ASSETS_DIR"""
+        return cls.ASSETS_DIR.joinpath(*parts)
+    
+    @classmethod
+    def get_src_path(cls, *parts):
+        """Get a path relative to SRC_DIR"""
+        return cls.SRC_DIR.joinpath(*parts)
 
 
 # Create directories on import
