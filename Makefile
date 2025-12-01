@@ -25,9 +25,7 @@ install-dev: ## Install development dependencies
 	@echo "$(GREEN)✓ Dev dependencies installed$(NC)"
 
 setup: install ## Setup database and environment
-	@echo "$(BLUE)Setting up database...$(NC)"
-	python3 scripts/setup_db.py
-	@echo "$(GREEN)✓ Database setup complete$(NC)"
+	@echo "$(GREEN)✓ Database setup handled automatically by app$(NC)"
 
 run: ## Run the application with uv (fastest)
 	@echo "$(BLUE)Starting Hajri.ai with uv...$(NC)"

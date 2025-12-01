@@ -44,7 +44,8 @@ cp .env.example .env
 pip install -r requirements.txt
 
 # 4. Initialize database
-python3 scripts/setup_db.py
+# 4. Initialize database
+# (Handled automatically on first run)
 
 # 5. Run application
 streamlit run src/app.py
@@ -113,15 +114,15 @@ hajri.ai/
 ├── src/                 # Source code
 │   ├── app.py          # Main application entry point
 │   ├── config/         # Configuration management
-│   ├── database/       # Database operations
-│   ├── services/       # Business services
-│   ├── ui/             # UI components & styles
-│   ├── legacy/         # Legacy modules (to be refactored)
-│   └── models/         # AI model files
+│   ├── database/       # Database operations (DBManager)
+│   ├── services/       # Business logic (Attendance, Image, Email, Report)
+│   ├── ui/             # UI components & views
+│   │   ├── views/      # Admin, Teacher, Student views
+│   │   └── styles.py   # CSS styles
+│   └── utils/          # Helper functions
 ├── docs/               # Documentation
 ├── scripts/            # Utility scripts
 ├── tests/              # Test files
-├── run.py              # Quick launcher
 ├── Dockerfile          # Docker configuration
 ├── docker-compose.yml  # Docker Compose configuration
 └── Makefile            # Build automation
@@ -222,7 +223,7 @@ For email notifications, use a Gmail App Password:
 
 ```bash
 # Initialize database
-python3 scripts/setup_db.py
+
 
 # Create backup
 python3 scripts/backup_data.py
